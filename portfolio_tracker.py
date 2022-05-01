@@ -2,14 +2,20 @@ import pandas as pd
 import yfinance as yf
 from yahoofinancials import YahooFinancials
 
-msft = yf.Ticker("PENN")
 
-hist = msft.history(period="max")
 
-rec = msft.recommendations
+#Taking in user input
 
-calendar = msft.news
+user_data = pd.read_csv("C:/Users/17819/Desktop/UserInputs.csv")
 
-print(calendar)
 
-#print(rec)
+#def getReturnSincePurchase(ticker, purchase_date):
+
+stock = yf.Ticker("MSFT")
+
+purchase_date_price = stock
+
+
+
+
+
