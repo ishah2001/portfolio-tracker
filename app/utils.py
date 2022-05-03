@@ -11,7 +11,7 @@ def get_current_price(symbol):
     todays_data = ticker.history(period='1d')
     return todays_data['Close'][0]
 
-
+'''
 def get_Purchased_price(symbol):
     ticker= yf.Ticker(symbol)
     date= "1" & "d"
@@ -22,3 +22,4 @@ def get_Purchased_price(symbol):
 
 get_Purchased_price("AAPL")
 
+'''
