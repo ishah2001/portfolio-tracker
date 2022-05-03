@@ -17,11 +17,9 @@ for i in range(len(user_data)):
 	temp_ticker = user_data.iloc[i,0]
 	temp_share_count = user_data.iloc[i,1]
 	temp_date_purchased = user_data.iloc[i,2]
-	print(get_current_price(temp_ticker))
-	
 
-
-#def getReturnSincePurchase(ticker, purchase_date):
+	current_price = get_current_price(temp_ticker)
+	current_market_value = current_price * temp_share_count
 
 
 
