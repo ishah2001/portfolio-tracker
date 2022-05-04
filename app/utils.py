@@ -11,19 +11,6 @@ def get_current_price(symbol):
     todays_data = ticker.history(period='1d')
     return todays_data['Close'][0]
 
-'''
-def get_Purchased_price(symbol):
-    ticker= yf.Ticker(symbol)
-    date= "1" & "d"
-    todays_data = ticker.history(period=date)
-
-    print(date)
-    return todays_data['Close'][0]
-
-get_Purchased_price("AAPL")
-
-'''
-
 
 def summary_stats(symbol):
     ticker= yf.Ticker(symbol)
@@ -38,6 +25,34 @@ def summary_stats(symbol):
     return ticker_history_summary
 
 
+def get_DifferenceInDay(userInputDate):
+   today = date.today()
+   d1 = today.strftime("%d/%m/%Y")
+   todayNew= d1.split('/')
+   todayYear= int(todayNew[2])
+   todayMonth= int(todayNew[1])
+   todayDay= int(todayNew[0])
+ 
+   dateList= userInputDate
+   token= dateList.split('/')
+   year= int(token[2])
+   month= int(token[0])
+   day= int(token[1])
+   f_date = date(year, month, day)
+   l_date = date(todayYear, todayMonth, todayDay)
+   delta = l_date - f_date
+ 
+   numberOfWeeks= (delta.days/ 7) * 2
+ 
+   differenceInDays= int(delta.days - numberOfWeeks)
+   return (str(differenceInDays))
+ 
+def get_Purchased_price(symbol,userInputDate):
+ 
+   ticker= yf.Ticker(symbol)
+   date= get_DifferenceInDay(userInputDate) + 'd'
+   todays_data = ticker.history(period=date)
+   return todays_data['Close'][0]
 
 def get_news(ticker):
 	ticker = yf.Ticker(ticker)
