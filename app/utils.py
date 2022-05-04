@@ -6,6 +6,11 @@ from yahoofinancials import YahooFinancials
 from datetime import date # used to get a certain time
 
 
+def to_usd(value):
+        return '${:,.2f}'.format(value)
+    
+
+
 def get_current_price(symbol):
     ticker = yf.Ticker(symbol)
     todays_data = ticker.history(period='1d')
