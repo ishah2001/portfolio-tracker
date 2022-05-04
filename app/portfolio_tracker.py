@@ -3,6 +3,7 @@ import yfinance as yf
 import os
 from yahoofinancials import YahooFinancials
 from utils import get_current_price
+from utils import get_news
 
 
 
@@ -20,7 +21,13 @@ for i in range(len(user_data)):
 
 	current_price = get_current_price(temp_ticker)
 	current_market_value = current_price * temp_share_count
+	print(get_news(temp_ticker))
 
+
+
+
+
+	#more functions and making the graph and pdf
 
 
 

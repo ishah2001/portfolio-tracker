@@ -23,3 +23,24 @@ def get_Purchased_price(symbol):
 get_Purchased_price("AAPL")
 
 '''
+
+
+
+def get_news(ticker):
+	ticker = yf.Ticker(ticker)
+	news = []
+	news = ticker.news
+	headlines = []
+
+	for i in range(len(news)):
+		headlines.append(news[i]["title"])
+
+	return(headlines)
+
+
+
+
+
+
+
+
