@@ -25,6 +25,19 @@ get_Purchased_price("AAPL")
 '''
 
 
+def summary_stats(symbol):
+    ticker= yf.Ticker(symbol)
+    end_date = pd.Timestamp.today()
+    start_date = end_date - pd.Timedelta(days=10*365) # Get past 10 years worth of data
+    ticker_history=ticker.history(start=start_date, end=end_date)
+    ticker_history = ticker_history.drop(columns=['Dividends', 'Stock Splits']) # Delete unnecessary columns
+    # Create a new column as Close 200 days moving average
+    ticker_history['Close_200ma'] = ticker_history['Close'].rolling(200).mean()
+    # This is the summary statistics table
+    ticker_history_summary = ticker_history.describe()
+    return ticker_history_summary
+
+
 
 def get_news(ticker):
 	ticker = yf.Ticker(ticker)
@@ -38,7 +51,7 @@ def get_news(ticker):
 	return(headlines)
 
 
-
+print(get_news())
 
 
 
