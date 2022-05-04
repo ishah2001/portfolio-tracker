@@ -3,7 +3,7 @@
 import pandas as pd 
 import yfinance as yf
 from yahoofinancials import YahooFinancials
-import datetime # used to get a certain time
+from datetime import date # used to get a certain time
 
 
 def get_current_price(symbol):
@@ -66,7 +66,9 @@ def get_news(ticker):
 	return(headlines)
 
 
-print(get_news())
+
+
+
 
 
 
