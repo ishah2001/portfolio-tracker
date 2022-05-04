@@ -44,6 +44,8 @@ for i in range(len(user_data)):
 
 	purchase_date_price = get_Purchased_price(temp_ticker, temp_date_purchased)
 
+	return_since_purchase = (current_price - purchase_date_price)/purchase_date_price
+
 	load_dotenv()
 
 	SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
@@ -57,6 +59,8 @@ for i in range(len(user_data)):
 		"share_count": str(temp_share_count),
 		"current_stock_price": str(to_usd(current_price)),
 		"total_market_value": str(to_usd(current_market_value)),
+		"purchase_return": str(return_since_purchase),
+
 
 	    "total_price_usd": "$99.99",
 	    "human_friendly_timestamp": "July 4th, 2099 10:00 AM",
