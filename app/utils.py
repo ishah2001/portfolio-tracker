@@ -59,8 +59,8 @@ def get_Purchased_price(symbol,userInputDate):
    todays_data = ticker.history(period=date)
    return todays_data['Close'][0]
 
-def get_news(ticker):
-	ticker = yf.Ticker(ticker)
+def get_news(symbol):
+	ticker = yf.Ticker(symbol)
 	news = []
 	news = ticker.news
 	headlines = []
@@ -71,6 +71,13 @@ def get_news(ticker):
 	return(headlines)
 
 
+def get_recommendations(symbol):
+    ticker = yf.Ticker(symbol)
+    lastFiveRecs = ticker.recommendations.tail(5)
+
+    return lastFiveRecs
+
+print(get_recommendations("AAPL"))
 
 
 
