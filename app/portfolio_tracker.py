@@ -8,6 +8,11 @@ from utils import summary_stats
 from utils import get_DifferenceInDay
 from utils import get_Purchased_price
 from utils import to_usd
+from utils import to_percent
+from utils import get_recommendations
+from utils import weekReturn
+from utils import monthReturn
+from utils import yearReturn
 import os
 from dotenv import load_dotenv
 from sendgrid import SendGridAPIClient
@@ -38,13 +43,20 @@ for i in range(len(user_data)):
 
 	current_market_value = current_price * temp_share_count
 
-	news_headlines= get_news(temp_ticker)
+	news= get_news(temp_ticker)
 
 	historical_summary_stats = summary_stats(temp_ticker)
 
 	purchase_date_price = get_Purchased_price(temp_ticker, temp_date_purchased)
 
 	return_since_purchase = (current_price - purchase_date_price)/purchase_date_price
+
+	weekly_return = weekReturn(temp_ticker)
+	monthly_return = monthReturn(temp_ticker)
+	yearly_return = yearReturn(temp_ticker)
+	
+		
+
 
 	load_dotenv()
 
@@ -59,18 +71,16 @@ for i in range(len(user_data)):
 		"share_count": str(temp_share_count),
 		"current_stock_price": str(to_usd(current_price)),
 		"total_market_value": str(to_usd(current_market_value)),
-		"purchase_return": str(return_since_purchase),
+		"purchase_return": str(to_percent(return_since_purchase)),
+		"monthly_return":str(to_percent(monthly_return)),
+		"weekly_return": str(to_percent(weekly_return)),
+		"yearly_return": str(to_percent(yearly_return)),
 
 
 	    "total_price_usd": "$99.99",
 	    "human_friendly_timestamp": "July 4th, 2099 10:00 AM",
-	    "products":[
-	        {"id": 100, "name": "Product 100"},
-	        {"id": 200, "name": "Product 200"},
-	        {"id": 300, "name": "Product 300"},
-	        {"id": 200, "name": "Product 200"},
-	        {"id": 100, "name": "Product 100"}
-	    ]
+	    "news": news
+	    
 	}
 
 

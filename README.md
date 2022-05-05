@@ -1,12 +1,17 @@
 # portfolio-tracker
 
 
+##Welcome
 
-# Setup
+Welcome to the portfolio tracker application! This program was developed by Carmen Aizpurua Bernabe, Danny Morales, and Ishaan Shah
+for our final project in OPIM 244.
 
-Make copy of example.csv file
 
-(data/example.csv)
+
+## Setup
+
+The first step to setting up this application for usage is to download the example.csv file (portfolio-tracker/data/example.csv)
+
 
 Fill it our with your stocks
 
@@ -42,7 +47,7 @@ SENDGRID_API
 
 
 
-# Usage  
+## Usage  
 
 Send the email:
 

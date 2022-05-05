@@ -8,6 +8,9 @@ from datetime import date # used to get a certain time
 
 def to_usd(value):
         return '${:,.2f}'.format(value)
+
+def to_percent(value):
+    return "{:.0%}".format(value)
     
 
 
@@ -59,16 +62,40 @@ def get_Purchased_price(symbol,userInputDate):
    todays_data = ticker.history(period=date)
    return todays_data['Close'][0]
 
+
+def weekReturn(symbol):
+   ticker1= yf.Ticker(symbol)
+   week_data = ticker1.history(period='7d')
+   weekStockPrice= week_data['Close'][0]
+   totalPercentGain= (get_current_price(symbol) - weekStockPrice)/ weekStockPrice
+   return totalPercentGain
+
+def monthReturn(symbol):
+   ticker2= yf.Ticker(symbol)
+   month_data = ticker2.history(period='30d')
+   monthStockPrice= month_data['Close'][0]
+   totalPercentGain= (get_current_price(symbol) - monthStockPrice)/ monthStockPrice
+   return totalPercentGain
+
+def yearReturn(symbol):
+   ticker3= yf.Ticker(symbol)
+   year_data = ticker3.history(period='365d')
+   yearStockPrice= year_data['Close'][0]
+   totalPercentGain= (get_current_price(symbol) - yearStockPrice)/ yearStockPrice
+   return totalPercentGain
+
+
+
 def get_news(symbol):
 	ticker = yf.Ticker(symbol)
 	news = []
 	news = ticker.news
 	headlines = []
+   
 
-	for i in range(len(news)):
-		headlines.append(news[i]["title"])
-
-	return(headlines)
+	#for i in range(len(news)):
+	#	    headlines.append(news[i]["title"])
+	return news
 
 
 def get_recommendations(symbol):
@@ -77,7 +104,17 @@ def get_recommendations(symbol):
 
     return lastFiveRecs
 
-print(get_recommendations("AAPL"))
+    
+
+#print(get_recommendations("MSFT"))
+
+
+
+
+
+
+
+
 
 
 
