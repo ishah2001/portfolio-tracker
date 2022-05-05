@@ -1,7 +1,7 @@
 # portfolio-tracker
 
 
-##Welcome
+## Welcome
 
 Welcome to the portfolio tracker application! This program was developed by Carmen Aizpurua Bernabe, Danny Morales, and Ishaan Shah
 for our final project in OPIM 244.
@@ -10,18 +10,12 @@ for our final project in OPIM 244.
 
 ## Setup
 
-The first step to setting up this application for usage is to download the example.csv file (portfolio-tracker/data/example.csv)
+1. The first step to setting up this application for usage is to download the example.csv file (portfolio-tracker/data/example.csv)
+2. Now make a copy and name it "portfolio.csv". It is VERY IMPORTANT that this exact name is used.
+3. Fill out your own stock data in this csv file based on the existing headings
+4. Save the file to the data folder. The file path of this csv file should end up being "portfolio-tracker/data/portfolio.csv"
 
 
-Fill it our with your stocks
-
-It gives a template of what it should look like
-
-First Column: Put the Ticker all in caps
-
-Second Column: Put the number of shares
-
-Third column: Put the date purchased of that stock (month/day/year)
 
 
 Install Packages:
