@@ -18,7 +18,7 @@ for our final project in OPIM 244.
 
 
 
-Install Packages:
+Now open up your terminal(or GitBash) and navigate to the project location. Then install neccessary packages through this command:
 
 ```sh
 pip install -r requirements.txt
