@@ -2,9 +2,9 @@ import pandas as pd
 import yfinance as yf
 import os
 from yahoofinancials import YahooFinancials
+# import all the utils definition for the output values
 from utils import get_current_price
 from utils import get_news
-from utils import summary_stats
 from utils import get_DifferenceInDay
 from utils import get_Purchased_price
 from utils import to_usd
@@ -33,6 +33,8 @@ file_path = os.path.join(os.path.dirname(__file__), "..", "data", "portfolio.csv
 user_data = pd.read_csv(file_path)
 user_data.head()
 
+# main loop of the program that runs up to the amount of stocks that the user insert
+
 for i in range(len(user_data)):
 
 	#gathering ticker, share count, and date purchased data for each stock
@@ -42,13 +44,14 @@ for i in range(len(user_data)):
 
 	#higher level caluclations using yfinance and methods from utils.py
 
+		# Creates new variables based on the Ticker and passes the value into certain functions
+
 		current_price = get_current_price(temp_ticker)
 
 		current_market_value = current_price * temp_share_count
 
 		news= get_news(temp_ticker)
 
-		historical_summary_stats = summary_stats(temp_ticker)
 
 		purchase_date_price = get_Purchased_price(temp_ticker, temp_date_purchased)
 
@@ -58,17 +61,21 @@ for i in range(len(user_data)):
 		monthly_return = monthReturn(temp_ticker)
 		yearly_return = yearReturn(temp_ticker)
 
+		# Insert a URL for the user to click and will direct them to a specific stock chart
+
 		chart_url = "https://www.tradingview.com/symbols/"+temp_ticker+"/"
 		
 
 		
 		load_dotenv()
 
+		# make sure that all the SendGrid info is set up correctly for both mac and windows
+
 		SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
 		SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
 		SENDGRID_TEMPLATE_ID = os.getenv("SENDGRID_TEMPLATE_ID", default="OOPS, please set env var called 'SENDGRID_TEMPLATE_ID'")
 
-
+		# Outputs all this data in the email sent to the users
 		template_data = {
 			"stock_ticker": temp_ticker,
 			"purchase_date": temp_date_purchased,
@@ -76,9 +83,6 @@ for i in range(len(user_data)):
 			"current_stock_price": str(to_usd(current_price)),
 			"total_market_value": str(to_usd(current_market_value)),
 			"purchase_return": str(to_percent(return_since_purchase)),
-			#"monthly_return":str(to_percent(monthly_return)),
-			#"weekly_return": str(to_percent(weekly_return)),
-			#"yearly_return": str(to_percent(yearly_return)),
 			"monthly_return":monthly_return,
 			"weekly_return": weekly_return,
 			"yearly_return": yearly_return,
@@ -87,6 +91,7 @@ for i in range(len(user_data)):
 		    
 		    
 		}
+
 
 
 		client = SendGridAPIClient(SENDGRID_API_KEY)
@@ -114,8 +119,6 @@ for i in range(len(user_data)):
 
 
 
-
-	#more functions and making the graph and pdf
 
 
 
