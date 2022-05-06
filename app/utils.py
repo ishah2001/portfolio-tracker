@@ -1,5 +1,6 @@
 # file that defines all the functions of yfinance
 
+from calendar import week
 import pandas as pd 
 import yfinance as yf
 from yahoofinancials import YahooFinancials
@@ -68,21 +69,28 @@ def weekReturn(symbol):
    week_data = ticker1.history(period='7d')
    weekStockPrice= week_data['Close'][0]
    totalPercentGain= (get_current_price(symbol) - weekStockPrice)/ weekStockPrice
-   return totalPercentGain
+   formatTotalPercent = str(to_percent(totalPercentGain))
+   return formatTotalPercent
+weekReturn("AAPL")
+
 
 def monthReturn(symbol):
    ticker2= yf.Ticker(symbol)
    month_data = ticker2.history(period='30d')
    monthStockPrice= month_data['Close'][0]
    totalPercentGain= (get_current_price(symbol) - monthStockPrice)/ monthStockPrice
-   return totalPercentGain
+   formatTotalPercent = str(to_percent(totalPercentGain))
+   return formatTotalPercent
+
 
 def yearReturn(symbol):
    ticker3= yf.Ticker(symbol)
    year_data = ticker3.history(period='365d')
    yearStockPrice= year_data['Close'][0]
    totalPercentGain= (get_current_price(symbol) - yearStockPrice)/ yearStockPrice
-   return totalPercentGain
+   formatTotalPercent = str(to_percent(totalPercentGain))
+   return formatTotalPercent
+
 
 
 

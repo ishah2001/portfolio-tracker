@@ -76,9 +76,12 @@ for i in range(len(user_data)):
 			"current_stock_price": str(to_usd(current_price)),
 			"total_market_value": str(to_usd(current_market_value)),
 			"purchase_return": str(to_percent(return_since_purchase)),
-			"monthly_return":str(to_percent(monthly_return)),
-			"weekly_return": str(to_percent(weekly_return)),
-			"yearly_return": str(to_percent(yearly_return)),
+			#"monthly_return":str(to_percent(monthly_return)),
+			#"weekly_return": str(to_percent(weekly_return)),
+			#"yearly_return": str(to_percent(yearly_return)),
+			"monthly_return":monthly_return,
+			"weekly_return": weekly_return,
+			"yearly_return": yearly_return,
 		    "news": news,
 		    "url":chart_url
 		    
