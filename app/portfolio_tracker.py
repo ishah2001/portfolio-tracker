@@ -27,8 +27,8 @@ import base64
 
 #Taking in user input
 
-file_path = os.path.join(os.path.dirname(__file__), "..", "data", "example.csv")
-#file_path = os.path.join(os.path.dirname(__file__), "..", "data", "portfolio.csv")
+#file_path = os.path.join(os.path.dirname(__file__), "..", "data", "example.csv")
+file_path = os.path.join(os.path.dirname(__file__), "..", "data", "portfolio.csv")
 
 user_data = pd.read_csv(file_path)
 user_data.head()

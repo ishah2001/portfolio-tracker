@@ -104,6 +104,12 @@ SENDGRID_TEMPLATE_ID ="xxxxxxxxxx"
 
 ```
 
+6. Also in the subject line in SendGrid add the following:
+```sh
+Weekly Stock Report for {{stock_ticker}}
+```
+
+
 
 
 
