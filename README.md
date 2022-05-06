@@ -121,5 +121,25 @@ Send the email:
 python app/portfolio_tracker.py
 ```
 
+## Run tests 
+
+To make sure that the code runs property follow these steps
+
+Double check if pytest was downloaded to the terminal
+
+```sh
+pip install -r requirements.txt
+```
+
+then in the terminal run the pytest
+
+```sh
+pytest
+```
+
+if there are no issues with the code it will give you a passed message
+
+However, if the message is red, then something is wrong with the code and 
+adjustments will have to be made
 
 
