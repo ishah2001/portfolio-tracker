@@ -28,18 +28,82 @@ pip install -r requirements.txt
 
 
 1. Sign up for a [SendGrid Account](https://sendgrid.com/), verify single sender, then obtain a Sendgrid API Key.
-2. Then create a dynamic template in SendGrid, add a version, and obtain the 
+2. Then create a dynamic template in SendGrid, add a version, and obtain the key for that version
+3. Then create a ".env" file at the root level in the "portfolio-tracker" repository
+4. Input your SendGrid API Key, Dynamic Template Key, and Sender Address in the ".env" file in the following way.
 
 
 
 
 
 ```sh
-ALPHAVANTAGE_API_KEY="..."
-
-SENDER_ADDRESS="example@gmail.com"
-SENDGRID_API
+SENDGRID_API_KEY="xxxxxxxxx"
+SENDER_ADDRESS="email@example.com"
+SENDGRID_TEMPLATE_ID ="xxxxxxxxxx"
 ```
+
+5. After creating and naming the dynamic template version, input the following html code in there:
+
+```sh
+
+<h3>Hello this is your stock report for {{stock_ticker}}: </h3>
+
+<p>Here is a Brief Summary of your current holding in {{stock_ticker}}: </p>
+
+<p><strong> Number of Shares:</strong> {{share_count}} </p>
+<p><strong> Current Price:</strong> {{current_stock_price}} </p>
+<p><strong> Total Market Value:</strong> {{total_market_value}}</p>
+<p>---------------------------------------------------------------------</p>
+
+
+<p> Stock Performance of {{stock_ticker}}: </p>
+<p><strong> 1 Week Return:</strong> {{weekly_return}} </p>
+<p><strong> 1 Month Return:</strong> {{monthly_return}} </p>
+<p><strong> 1 Year Return:</strong> {{yearly_return}} </p>
+<p><strong> Return Since Purchase Date:</strong> {{purchase_return}}</p>
+<p>---------------------------------------------------------------------</p>
+
+<p> Relevant News:</p>
+
+
+<ul>
+{{#each news}}
+	<li>{{this.title}}</li>
+{{/each}}
+</ul>
+
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div id="tradingview_47971"></div>
+  <div class="tradingview-widget-copyright"><a href={{url}} rel="noopener" target="_blank"><span class="blue-text">{{stock_ticker}} Chart</span></a> by TradingView</div>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+  new TradingView.widget(
+  {
+  "autosize": true,
+  "symbol": {{stock_ticker}},
+  "interval": "D",
+  "timezone": "Etc/UTC",
+  "theme": "light",
+  "style": "1",
+  "locale": "en",
+  "toolbar_bg": "#f1f3f6",
+  "enable_publishing": false,
+  "allow_symbol_change": true,
+  "container_id": "tradingview_47971"
+}
+  );
+  </script>
+</div>
+<!-- TradingView Widget END -->
+
+
+
+
+
+```
+
 
 
 
