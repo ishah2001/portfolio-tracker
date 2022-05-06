@@ -26,9 +26,11 @@ pip install -r requirements.txt
 
 ## Configuration
 
-Obtain a premium AlphaVantage API Key [here](https://www.alphavantage.co/).
 
-Sign up for a [SendGrid Account](https://sendgrid.com/), verify single sender, then obtain a Sendgrid API Key. 
+1. Sign up for a [SendGrid Account](https://sendgrid.com/), verify single sender, then obtain a Sendgrid API Key.
+2. Then create a dynamic template in SendGrid, add a version, and obtain the 
+
+
 
 
 

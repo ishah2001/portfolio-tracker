@@ -98,11 +98,6 @@ def get_news(symbol):
 	return news
 
 
-def get_recommendations(symbol):
-    ticker = yf.Ticker(symbol)
-    lastFiveRecs = ticker.recommendations.tail(5)
-
-    return lastFiveRecs
 
     
 
